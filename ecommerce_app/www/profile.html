@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile - Fruit Shop</title>
+<link rel="stylesheet" href="/assets/ecommerce_app/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🍎 Fruit Shop</div>
+    <ul class="nav-links">
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/items.html">Items</a></li>
+        <li><a href="/profile.html" id="profileLink">Profile</a></li>
+        <li><a href="#" id="loginLogoutLink">Login</a></li>
+    </ul>
+</nav>
+
+<div class="container" id="profileContainer">
+    <!-- Profile info loaded by JS -->
+</div>
+
+<script src="/assets/ecommerce_app/js/script.js"></script>
+<script>
+window.onload = function() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user){ window.location.href="/login.html"; return; }
+    document.getElementById("profileName").innerText = user.full_name;
+    loadProfile();
+}
+</script>

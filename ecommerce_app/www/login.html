@@ -1,0 +1,94 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Fruit Shop</title>
+<link rel="stylesheet" href="/assets/ecommerce_app/css/style.css">
+</head>
+<body>
+<div class="login-container">
+<h2>Login</h2>
+<form id="loginForm">
+<input type="email" id="loginEmail" placeholder="Email" required>
+<input type="password" id="loginPassword" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
+<div id="errorMsg" style="color:red;"></div>
+<p>Don't have an account? <a href="/signup.html">Signup here</a></p>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+   const loginForm = document.getElementById("loginForm");
+   if(loginForm){
+       loginForm.addEventListener("submit", async (event) => {
+           event.preventDefault();
+           const email = document.getElementById("loginEmail").value.trim();
+           const password = document.getElementById("loginPassword").value.trim();
+           if(!email || !password){
+               document.getElementById("errorMsg").innerText = "Please enter email and password.";
+               return;
+           }
+           try {
+               const res = await fetch("/api/method/ecommerce_app.api.home.login", {
+                   method: "POST",
+                   headers: {"Content-Type": "application/json"},
+                   body: JSON.stringify({ email, password })
+               });
+               const data = await res.json();
+               console.log("API Response:", data); // Debugging
+               // Adjust according to your API structure
+               if(data.message && data.message.status === "success"){
+                   localStorage.setItem("user", JSON.stringify(data.message.user));
+                   window.location.href = "/home.html";
+               } else if(data.status === "success"){
+                   // fallback if API uses data.status
+                   localStorage.setItem("user", JSON.stringify(data.user));
+                   window.location.href = "/home.html";
+               } else {
+                   document.getElementById("errorMsg").innerText = data.message?.message || "Login failed";
+               }
+           } catch(err){
+               console.error(err);
+               document.getElementById("errorMsg").innerText = "Error connecting to server.";
+           }
+       });
+   }
+});
+</script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Fruit Shop</title>
+<link rel="stylesheet" href="/assets/ecommerce_app/css/style.css">
+</head>
+<body>
+
+<!-- Include navbar -->
+<nav class="navbar">
+    <div class="logo">🍎 Fruit Shop</div>
+    <ul class="nav-links">
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/items.html">Items</a></li>
+        <li><a href="/profile.html" id="profileLink">Profile</a></li>
+        <li><a href="#" id="loginLogoutLink">Login</a></li>
+    </ul>
+</nav>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div id="errorMsg" style="color:red;"></div>
+    <p>Don't have an account? <a href="/signup.html">Signup here</a></p>
+</div>
+
+<script src="/assets/ecommerce_app/js/script.js"></script>
+

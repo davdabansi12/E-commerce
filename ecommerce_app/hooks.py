@@ -1,9 +1,12 @@
+
+
 app_name = "ecommerce_app"
 app_title = "Ecommerce App"
 app_publisher = "Bansi Davda"
 app_description = "Custom e-commerce website integrated with ERPNext"
 app_email = "bansidavda2002@gmail.com"
 app_license = "mit"
+ignore_csrf=1
 
 # Apps
 # ------------------
@@ -241,4 +244,11 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+
+# ecommerce_app/hooks.py
+
+override_whitelisted_methods = {
+    "ecommerce_app.api.home.signup": "ecommerce_app.api.home.signup"
+}
+
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Item - Fruit Shop</title>
+<link rel="stylesheet" href="/assets/ecommerce_app/css/style.css">
+</head>
+<body>
+<header>
+    <h1>🍎 Fruit Shop</h1>
+    <div>
+        <span id="profileName"></span>
+        <button onclick="logoutUser()">Logout</button>
+    </div>
+</header>
+
+<div class="container">
+    <div id="item-container"></div>
+</div>
+
+<div id="cartSidebar">
+    <h2>Cart</h2>
+    <div id="cartItems"></div>
+    <div id="cartTotal">Total: $0.00</div>
+    <button onclick="checkout()">Checkout</button>
+</div>
+
+<script src="/assets/js/frappe.min.js"></script>
+<script src="/assets/ecommerce_app/js/script.js"></script>
+<script>
+window.onload = function() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user){ window.location.href="/login.html"; return; }
+    document.getElementById("profileName").innerText = user.full_name;
+    loadItemPage();
+    loadCart();
+}
+</script>
+</body>
+</html>
