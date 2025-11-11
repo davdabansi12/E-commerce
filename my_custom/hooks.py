@@ -5,6 +5,9 @@ app_description = "learning"
 app_email = "bansidavda2002@gmail.com"
 app_license = "mit"
 
+
+
+
 # Apps
 # ------------------
 
